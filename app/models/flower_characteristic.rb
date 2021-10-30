@@ -1,0 +1,2 @@
+class FlowerCharacteristic < ApplicationRecord
+end
