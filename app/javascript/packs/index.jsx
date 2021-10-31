@@ -1,8 +1,16 @@
-import React from "react";
-import { render } from "react-dom";
-import App from "../components/App";
+import React from 'react';
+import ReactDOM from 'react-dom';
+import { Provider } from 'react-redux';
+import App from '../components/App';
 
+import store from '../store/store';
 
 document.addEventListener("DOMContentLoaded", () => {
-  render(<App />, document.body.appendChild(document.createElement("div")));
+  ReactDOM.render(
+    <React.StrictMode>
+      <Provider store={store}>
+        <App />
+      </Provider> 
+    </React.StrictMode>,
+    document.body.appendChild(document.createElement("div")));
 });

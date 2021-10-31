@@ -1,6 +1,6 @@
 import { Layout } from "antd";
 import React from "react";
-import Areas from "./Areas";
+import Plants from "./Plants";
 import Header from "./Header";
 
 const { Content, Footer } = Layout;
@@ -11,7 +11,7 @@ export default () => (
     <Content style={{ padding: "0 50px" }}>
       <div className="site-layout-content" style={{ margin: "100px auto" }}>
         <h1>Plant Catalog</h1>
-        <Areas />
+        <Plants />
       </div>
     </Content>
   </Layout>
