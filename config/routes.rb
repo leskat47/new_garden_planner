@@ -8,6 +8,8 @@ Rails.application.routes.draw do
       get 'plants/index'
       post 'plants/create'
       delete 'plants/:id', to: 'plants#destroy'
+
+      get 'areas/index'
     end
   end
 
