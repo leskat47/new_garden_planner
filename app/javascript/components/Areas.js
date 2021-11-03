@@ -2,11 +2,11 @@ import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { connect } from 'react-redux';
 import load_areas from '../effects/load_areas';
+import PlantTable from './PlantTable';
 
 
 function Areas({ areas, loading }) {
   const dispatch = useDispatch();
-
   useEffect( () => { dispatch(load_areas()) }, [dispatch])
   if ( loading ) {
     return (
@@ -16,8 +16,11 @@ function Areas({ areas, loading }) {
   return (
     <div>
       Areas
-      {areas && areas.map((area, i) => {
-        return <div key={i}>{area.name}</div>
+      { areas && areas.map((area, i) => {
+        <div key={i}>
+            <h2>{area.name}</h2>
+            <PlantTable plants={area.locations} />
+          </div>
       })}
     </div>
     );
