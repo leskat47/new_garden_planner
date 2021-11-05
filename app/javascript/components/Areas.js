@@ -7,21 +7,21 @@ import PlantTable from './PlantTable';
 
 function Areas({ areas, loading }) {
   const dispatch = useDispatch();
-  useEffect( () => { dispatch(load_areas()) }, [dispatch])
+  useEffect( () => { dispatch(load_areas()) }, [dispatch]);
   if ( loading ) {
     return (
-      <div>loading...</div>
+      <div className="loading">loading...</div>
     )
   }
   return (
     <div>
-      Areas
-      { areas && areas.map((area, i) => {
+      <h1>Areas</h1>
+      { areas && areas.map((area, i) => (
         <div key={i}>
             <h2>{area.name}</h2>
             <PlantTable plants={area.locations} />
           </div>
-      })}
+      ))}
     </div>
     );
 }
@@ -29,7 +29,7 @@ function Areas({ areas, loading }) {
 function mapStateToProps(state) {
   return {
     areas: state.areas ? state.areas.areasList : [],
-    loading: state.areas.loading
+    loading: state.areas ? state.areas.loading : null
   }
 }
 

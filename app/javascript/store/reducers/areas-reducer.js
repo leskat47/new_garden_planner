@@ -2,7 +2,7 @@ import ACTIONS from '../actions/actionTypes';
 
 const initialState = {};
 
-function startLoading (state) {
+function setLoading (state) {
   return { ...state, loading: true}
 }
 function setAreas (state, action) {
@@ -10,7 +10,7 @@ function setAreas (state, action) {
 }
 export default (state = initialState, action) => {
   switch (action.type) {
-    case ACTIONS.START_GET_AREAS:
+    case ACTIONS.START_LOAD_AREAS:
       return setLoading(state);
     case ACTIONS.GET_AREAS_SUCCESS:
       return setAreas(state, action);
