@@ -1,8 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-// import flower from '../assets/flower.png';
 
-function PlantTable({locations}) {
+function PlantTable({plantings}) {
   return (
     <table>
       <tbody>
@@ -11,14 +10,20 @@ function PlantTable({locations}) {
           <th>exposure</th>
           <th>moisture</th>
         </tr>
-
+        { plantings.map((plant, i) => (
+          <tr key={i}>
+            <td>{plant.plant.name}</td>
+            <td>{plant.plant.exposure}</td>
+            <td>{plant.plant.moisture}</td>
+          </tr>
+        ))}
       </tbody>
     </table>
   );
 }
 
 PlantTable.propTypes = {
-  locations: PropTypes.array
+  plantings: PropTypes.array
 }
 
 export default PlantTable;

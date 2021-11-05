@@ -5,6 +5,6 @@ Plant.create(name: 'Lemon Verbena', exposure:'sun', moisture:"keep moist", descr
 area = Area.create(name: 'main garden')
 loc = Location.create(name: 'southeast flowerbed', area: area)
 
-Planting.create(date_planted: '2019-03-03', description: 'perennial', plant: az)
+Planting.create(date_planted: '2019-03-03', description: 'perennial', plant: az, location: loc)
 
 
