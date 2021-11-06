@@ -1,107 +1,63 @@
-import { Table, message, Popconfirm } from "antd";
-import React from "react";
+import { Table, message, Popconfirm } from 'antd';
+import React, { useState, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { connect } from 'react-redux';
+
 import AddPlantModal from "./AddPlantModal";
+import PlantTableColumns from './PlantTableColumns';
+import loadPlants from '../effects/load_plants';
 
-class Plants extends React.Component {
-  columns = [
-    {
-      title: "Name",
-      dataIndex: "name",
-      key: "name",
-    },
-    {
-      title: "Exposure",
-      dataIndex: "exposure",
-      key: "exposure",
-    },
-    {
-      title: "Moisture",
-      dataIndex: "Moisture",
-      key: "Moisture",
-    },
-    {
-      title: "Description",
-      dataIndex: "description",
-      key: "description",
-    },
-    {
-      title: "",
-      key: "action",
-      render: (_text, record) => (
-        <Popconfirm title="Are you sure to delete this plant?" onConfirm={() => this.deletePlant(record.id)} okText="Yes" cancelText="No">
-          <a href="#" type="danger">
-            Delete{" "}
-          </a>
-        </Popconfirm>
-      ),
-    },
-  ];
+function PPlants({plants, loading}) {
+	const dispatch = useDispatch();
+	useEffect( () => {
+		!plants && !loading && dispatch(loadPlants());
+	}, [plants, dispatch]);
 
-  state = {
-    plants: [],
-  };
 
-  componentDidMount() {
-    this.loadPlants();
-  }
+  	const reloadPlants = () => {
+    	setPlants({ plants: [] });
+    	loadPlants();
+ 	};
 
-  loadPlants = () => {
-    const url = "api/v1/plants/index";
-    fetch(url)
-      .then((data) => {
-        if (data.ok) {
-          return data.json();
-        }
-        throw new Error("Network error.");
-      })
-      .then((data) => {
-        data.forEach((plant) => {
-          const newEl = {
-            key: plant.id,
-            id: plant.id,
-            name: plant.name,
-            exposure: plant.exposure,
-            moisture: plant.moisture,
-            description: plant.description,
-          };
+ 	const deletePlant = (id) => {
+	    const url = `api/v1/plants/${id}`;
 
-          this.setState((prevState) => ({
-            plants: [...prevState.plants, newEl],
-          }));
-        });
-      })
-      .catch((err) => message.error("Error: " + err));
-  };
+	    fetch(url, {
+	      method: "delete",
+	    })
+	      .then((data) => {
+	        if (data.ok) {
+	          reloadPlants();
+	          return data.json();
+	        }
+	        throw new Error("Network error.");
+	      })
+      	  .catch((err) => message.error("Error: " + err));
+  	};
 
-  reloadPlants = () => {
-    this.setState({ plants: [] });
-    this.loadPlants();
-  };
+	const columns = PlantTableColumns({
+	    delete_text: 'Are you sure you want to delete this plant?',
+	    onDelete: deletePlant
+	});
 
-  deletePlant = (id) => {
-    const url = `api/v1/plants/${id}`;
-
-    fetch(url, {
-      method: "delete",
-    })
-      .then((data) => {
-        if (data.ok) {
-          this.reloadPlants();
-          return data.json();
-        }
-        throw new Error("Network error.");
-      })
-      .catch((err) => message.error("Error: " + err));
-  };
-
-  render() {
-    return (
+  	return (
       <>
-        <Table className="table-striped-rows" dataSource={this.state.plants} columns={this.columns} pagination={{ pageSize: 5 }} />
-        <AddPlantModal reloadPlants={this.reloadPlants} />
+        <Table className="table-striped-rows"
+        	dataSource={plants}
+        	columns={columns}
+        	pagination={{ pageSize: 5 }} />
+        <AddPlantModal reloadPlants={loadPlants} />
       </>
     );
+ 	return (<div>HI</div>)
+
+};
+
+function mapStateToProps(state) {
+  return {
+    plants: state.plants ? state.plants.plantList : [],
+    loading: state.plants ? state.plants.loading : null
   }
 }
 
-export default Plants;
+export default connect(mapStateToProps)(PPlants);

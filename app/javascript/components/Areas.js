@@ -1,12 +1,11 @@
 import React, { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
 import { connect } from 'react-redux';
 import load_areas from '../effects/load_areas';
 import Locations from './Locations';
 
 
 function Areas({ areas, loading, dispatch }) {
-  
+
   useEffect(() => {
     !areas && !loading && dispatch(load_areas())
   }, [areas, loading, dispatch]);

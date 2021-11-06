@@ -1,7 +1,6 @@
-import ACTIONS from '../store/actions/actionTypes' 
+import ACTIONS from '../store/actions/actionTypes';
 
 const loadAreas = () => {
-  console.log("effect called")
   const url = "api/v1/areas/index";
 
   return async dispatch => {
