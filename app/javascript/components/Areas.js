@@ -5,9 +5,11 @@ import load_areas from '../effects/load_areas';
 import Locations from './Locations';
 
 
-function Areas({ areas, loading }) {
-  const dispatch = useDispatch();
-  useEffect( () => { dispatch(load_areas()) }, [dispatch]);
+function Areas({ areas, loading, dispatch }) {
+  
+  useEffect(() => {
+    !areas && !loading && dispatch(load_areas())
+  }, [areas, loading, dispatch]);
 
   if ( loading ) {
     return (
