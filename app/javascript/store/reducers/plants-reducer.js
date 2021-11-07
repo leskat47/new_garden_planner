@@ -3,11 +3,15 @@ import ACTIONS from '../actions/actionTypes';
 const initialState = {};
 
 function setPlants (state, action) {
-  const plants = action.data.map(plant => {
-    return {key: plant.id,
-            ...plant}
-  });
+  if (action.data) {
+    const plants = action.data.map(plant => {
+      return {key: plant.id,
+              ...plant}
+    });
   return {plantList: plants};
+  }
+  return state;
+
 }
 export default (state = initialState, action) => {
   switch (action.type) {

@@ -3,7 +3,8 @@ import ACTIONS from '../actions/actionTypes';
 const initialState = {};
 
 function setAreas (state, action) {
-  return {areasList: action.data};
+  const areas = action.data || state.areasList;
+  return {areasList: areas};
 }
 export default (state = initialState, action) => {
   switch (action.type) {
