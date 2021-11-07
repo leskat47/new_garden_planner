@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import load_areas from '../effects/load_areas';
 import Locations from './Locations';
 
@@ -7,7 +8,7 @@ import Locations from './Locations';
 function Areas({ areas, loading, dispatch }) {
 
   useEffect(() => {
-    !areas && !loading && dispatch(load_areas())
+    !areas.length && !loading && dispatch(load_areas())
   }, [areas, loading, dispatch]);
 
   if ( loading ) {
@@ -28,11 +29,16 @@ function Areas({ areas, loading, dispatch }) {
     );
 }
 
+Areas.propTypes = {
+  areas: PropTypes.array.isRequired,
+  loading: PropTypes.bool.isRequired,
+  dispatch: PropTypes.func.isRequired,
+}
+
 function mapStateToProps(state) {
-  console.log(state)
   return {
-    areas: state.areas ? state.areas.areasList : [],
-    loading: state.loadingStatus ? state.loadingStatus.loading : false
+    areas: state.areas && state.areas.areasList || [],
+    loading: state.loadingStatus && state.loadingStatus.loading || false
   }
 }
 

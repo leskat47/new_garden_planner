@@ -22,7 +22,8 @@ describe('Areas tests', () => {
                   }
                  ],
           }]
-        }
+        },
+      loadingStatus: {loading: false}  
     });
     const { container } = render(
       <Provider store={store}>
@@ -33,8 +34,8 @@ describe('Areas tests', () => {
   });
 
   it('makes a call for areas', () => {
-    const store = storeBuilder({areas: {}});
-    const { container } = render(
+    const store = storeBuilder({areas: {}, loadingStatus: {loading: false} });
+    render(
       <Provider store={store}>
         <Areas/>
       </Provider>);

@@ -2,15 +2,16 @@ import { Table, message, Popconfirm } from 'antd';
 import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
 import AddPlantModal from "./AddPlantModal";
 import PlantTableColumns from './PlantTableColumns';
 import loadPlants from '../effects/load_plants';
 
-function PPlants({plants, loading}) {
+function Plants({plants, loading}) {
 	const dispatch = useDispatch();
 	useEffect( () => {
-		!plants && !loading && dispatch(loadPlants());
+		!plants.length && !loading && dispatch(loadPlants());
 	}, [plants, dispatch]);
 
 
@@ -53,11 +54,17 @@ function PPlants({plants, loading}) {
 
 };
 
+Plants.propTypes = {
+  plants: PropTypes.array.isRequired,
+  loading: PropTypes.bool.isRequired,
+  dispatch: PropTypes.func.isRequired,
+}
+
 function mapStateToProps(state) {
   return {
-    plants: state.plants ? state.plants.plantList : [],
-    loading: state.loadingStatus ? state.loadingStatus.loading : false
+    plants: state.plants.plantList || [],
+    loading: state.loadingStatus.loading || false
   }
 }
 
-export default connect(mapStateToProps)(PPlants);
+export default connect(mapStateToProps)(Plants);
