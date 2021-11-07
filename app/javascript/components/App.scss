@@ -1,42 +1,37 @@
+@import '../styles/typography';
 @import '../styles/tables';
 
 $icon-size: 24px; 
+$dark-blue: #023062;
+$light-green: #d0ffd0;
 
 body {
   padding: 1rem;
-}
 
-/*typography*/
-@mixin extra-large {
-  font-weight: heavy;
-  font-size: 2em;
-}
+  header {
+    padding: 0 2.5rem;
+    line-height: 2.5rem;
+    background: darkblue;
+    display: flex;
+    align-items: center;
+      a.nav {
+        @include title-text;
+        color: white;
+        display: block;
+        height: 100%;
+        padding: 1rem;
+        &.selected {
+          background: $light-green;
+          color: $dark-blue;
+        }
+      }
+  }
 
-@mixin section-heading {
-  font-weight: heavy;
-  font-size: 1.5em;
-}
-
-@mixin mini-headings {
-  font-weight: light;
-  text-align: left;
-  font-size: .75em;
-  text-transform: uppercase;
-}
-
-h1 {
-  @include extra-large;
-}
-
-h2 {
-  @include section-heading
-}
-
-table {
-  th {
-    @include mini-headings;
+  main {
+    padding: 2rem;
   }
 }
+
 
 .flower-icon {
   height: $icon-size;

@@ -9,7 +9,6 @@ import loadingSelector from '../store/selectors/loading-selector';
 
 
 function Areas({ areas, loading, dispatch }) {
-
   useEffect(() => {
     !areas.length && !loading && dispatch(load_areas())
   }, [areas, loading, dispatch]);

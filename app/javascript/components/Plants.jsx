@@ -46,6 +46,7 @@ function Plants({plants, loading}) {
 
   	return (
       <AppLayout>
+      <h1>Plants</h1>
         <Table className="table-striped-rows"
         	dataSource={plants}
         	columns={columns}

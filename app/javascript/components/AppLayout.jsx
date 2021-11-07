@@ -4,13 +4,13 @@ import Header from "./Header";
 
 const { Content, Footer } = Layout;
 
-export default ({children}) => (
-  <Layout className="layout">
+export default ({children, ...props}) => (
+  <div className="layout">
     <Header />
     <Content>
       <main>
         {children}
       </main>
     </Content>
-  </Layout>
+  </div>
 );

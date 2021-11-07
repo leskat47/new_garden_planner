@@ -2,6 +2,7 @@ table {
   tr {
 	th {
 	  background-color: lightgrey;
+	  @include mini-headings;
 	}
 	td, th {
 	  padding: .5rem;
