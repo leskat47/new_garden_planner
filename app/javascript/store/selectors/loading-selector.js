@@ -1,0 +1,1 @@
+export default (state) => state.loadingStatus && state.loadingStatus.loading || false;

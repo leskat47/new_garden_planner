@@ -2,7 +2,6 @@ import ACTIONS from '../store/actions/actionTypes';
 
 const loadAreas = () => {
   const url = "api/v1/areas/index";
-  console.log('loadAreas')
   return async dispatch => {
     dispatch({ type: ACTIONS.START_LOAD });
     const response = await fetch(url);

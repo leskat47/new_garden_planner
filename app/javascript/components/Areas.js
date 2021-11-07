@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import load_areas from '../effects/load_areas';
 import Locations from './Locations';
+import areasSelector from '../store/selectors/areas-selector';
+import loadingSelector from '../store/selectors/loading-selector';
 
 
 function Areas({ areas, loading, dispatch }) {
@@ -37,8 +39,8 @@ Areas.propTypes = {
 
 function mapStateToProps(state) {
   return {
-    areas: state.areas && state.areas.areasList || [],
-    loading: state.loadingStatus && state.loadingStatus.loading || false
+    areas: areasSelector(state),
+    loading: loadingSelector(state)
   }
 }
 

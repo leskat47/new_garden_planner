@@ -7,6 +7,8 @@ import PropTypes from 'prop-types';
 import AddPlantModal from "./AddPlantModal";
 import PlantTableColumns from './PlantTableColumns';
 import loadPlants from '../effects/load_plants';
+import plantsSelector from '../store/selectors/plants-selector';
+import loadingSelector from '../store/selectors/loading-selector';
 
 function Plants({plants, loading}) {
 	const dispatch = useDispatch();
@@ -62,8 +64,8 @@ Plants.propTypes = {
 
 function mapStateToProps(state) {
   return {
-    plants: state.plants.plantList || [],
-    loading: state.loadingStatus.loading || false
+    plants: plantsSelector(state),
+    loading: loadingSelector(state)
   }
 }
 
