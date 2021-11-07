@@ -29,9 +29,10 @@ function Areas({ areas, loading, dispatch }) {
 }
 
 function mapStateToProps(state) {
+  console.log(state)
   return {
     areas: state.areas ? state.areas.areasList : [],
-    loading: state.areas ? state.areas.loading : null
+    loading: state.loadingStatus ? state.loadingStatus.loading : false
   }
 }
 

@@ -56,7 +56,7 @@ function PPlants({plants, loading}) {
 function mapStateToProps(state) {
   return {
     plants: state.plants ? state.plants.plantList : [],
-    loading: state.plants ? state.plants.loading : null
+    loading: state.loadingStatus ? state.loadingStatus.loading : false
   }
 }
 
