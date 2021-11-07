@@ -1,24 +1,33 @@
 import React from 'react';
+import { Table, message, Popconfirm } from 'antd';
+import PlantTableColumns from './PlantTableColumns';
 import PropTypes from 'prop-types';
 
 function PlantTable({plantings}) {
+  const columns = PlantTableColumns({
+    delete_text: 'Are you sure you want to delete this plant?',
+    // TODO: add delete function
+    onDelete: () => { console.log('delete')}
+  });
+
+  const plantDetails = plantings.map(planting => {
+    // TODO: We can do this parsing in the serializer. Just getting antd styling in now.
+    const plant = planting.plant;
+    return {
+      name: plant.name,
+      key: planting.id,
+      exposure: plant.exposure,
+      moisture: plant.moisture,
+      description: plant.description
+    };
+  });
+
   return (
-    <table>
-      <tbody>
-        <tr>
-          <th>name</th>
-          <th>exposure</th>
-          <th>moisture</th>
-        </tr>
-        { plantings.map((plant, i) => (
-          <tr key={i}>
-            <td>{plant.plant.name}</td>
-            <td>{plant.plant.exposure}</td>
-            <td>{plant.plant.moisture}</td>
-          </tr>
-        ))}
-      </tbody>
-    </table>
+    <Table className="table-striped-rows"
+          dataSource={plantDetails}
+          columns={columns}
+          pagination={{ pageSize: 5 }}
+    />
   );
 }
 

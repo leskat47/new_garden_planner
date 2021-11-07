@@ -15,8 +15,8 @@ function PlantTableColumns({delete_text, onDelete}) {
     },
     {
       title: "Moisture",
-      dataIndex: "Moisture",
-      key: "Moisture",
+      dataIndex: "moisture",
+      key: "moisture",
     },
     {
       title: "Description",

@@ -18,7 +18,7 @@ function Plants({plants, loading}) {
 	}, [plants, dispatch]);
 
 
-  	const reloadPlants = () => {
+  const reloadPlants = () => {
     	setPlants({ plants: [] });
     	loadPlants();
  	};
