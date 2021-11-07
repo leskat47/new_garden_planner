@@ -1,15 +1,24 @@
-import React from "react";
+import React, { useState } from "react";
+import { NavLink } from 'react-router-dom';
 import { Layout, Menu } from "antd";
 
 const { Header } = Layout;
 
-export default () => (
-  <Header>
-    <div className="logo" />
-    <Menu theme="dark" mode="horizontal" defaultSelectedKeys={["1"]}>
-      <Menu.Item key="1">Home</Menu.Item>
-      <Menu.Item key="2">Our Services</Menu.Item>
-      <Menu.Item key="3">Contact</Menu.Item>
-    </Menu>
-  </Header>
-);
+function AppHeader() {
+  const [key, setKey] = useState("");
+
+  const handleClick = ({ _item, key, _keyPath, _domEvent }) => {
+    setKey(key);
+  };
+  return (
+    <Header>
+      <div className="logo" />
+      <Menu theme="dark" mode="horizontal" onClick={handleClick} defaultSelectedKeys={["/"]}>
+        <Menu.Item key="/"><NavLink to="/">Garden</NavLink></Menu.Item>
+        <Menu.Item key="/plants"><NavLink to="/plants">Plant Catalog</NavLink></Menu.Item>
+      </Menu>
+    </Header>
+  );
+};
+
+export default AppHeader;

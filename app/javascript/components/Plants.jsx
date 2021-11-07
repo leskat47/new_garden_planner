@@ -4,6 +4,7 @@ import { useDispatch } from 'react-redux';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
+import AppLayout from './AppLayout';
 import AddPlantModal from "./AddPlantModal";
 import PlantTableColumns from './PlantTableColumns';
 import loadPlants from '../effects/load_plants';
@@ -44,13 +45,13 @@ function Plants({plants, loading}) {
 	});
 
   	return (
-      <>
+      <AppLayout>
         <Table className="table-striped-rows"
         	dataSource={plants}
         	columns={columns}
         	pagination={{ pageSize: 5 }} />
         <AddPlantModal reloadPlants={loadPlants} />
-      </>
+      </AppLayout>
     );
  	return (<div>HI</div>)
 

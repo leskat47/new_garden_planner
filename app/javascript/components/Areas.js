@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import load_areas from '../effects/load_areas';
+import AppLayout from './AppLayout';
 import Locations from './Locations';
 import areasSelector from '../store/selectors/areas-selector';
 import loadingSelector from '../store/selectors/loading-selector';
@@ -19,7 +20,7 @@ function Areas({ areas, loading, dispatch }) {
     )
   }
   return (
-    <div>
+    <AppLayout>
       <h1>Areas</h1>
       { areas && areas.map((area, i) => (
         <div key={i}>
@@ -27,7 +28,7 @@ function Areas({ areas, loading, dispatch }) {
             <Locations locations={area.locations} />
           </div>
       ))}
-    </div>
+    </AppLayout>
     );
 }
 
