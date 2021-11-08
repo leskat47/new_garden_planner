@@ -1,6 +1,7 @@
 name: CI RSpec Tests
 
 on:
+  pull_request:
   push:
 
 jobs:
