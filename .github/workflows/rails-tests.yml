@@ -6,9 +6,7 @@ on:
 jobs:
   build:
     name: CI
-    runs-on: ubuntu-latest
-    env:
-      api-dir: ./api 
+    runs-on: ubuntu-latest 
 
     services:
       postgres:
