@@ -2,8 +2,6 @@ name: CI RSpec Tests
 
 on:
   push:
-   paths:
-   - 'app/'
 
 jobs:
   build:
