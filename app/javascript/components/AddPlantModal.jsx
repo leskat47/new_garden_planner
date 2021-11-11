@@ -1,6 +1,6 @@
 import { Button, Form, Input, Modal, Select } from "antd";
 import React, { useState } from "react";
-
+import { addPlant } from '../api_requests/plants';
 const { Option } = Select;
 
 function AddPlantModal({reloadPlants}){
@@ -8,24 +8,12 @@ function AddPlantModal({reloadPlants}){
   const [form] = Form.useForm();
 
   const onFinish = (values) => {
-    const url = "api/v1/plants/create";
-    fetch(url, {
-      method: "post",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(values),
-    })
-    .then((data) => {
-      if (data.ok) {
-        handleCancel();
-        reloadPlants();
-        form.resetFields();
-      } else {
-        throw new Error("Network error.");
-      }
-    })
-    .catch((err) => console.error("Error: " + err));
+    const onSuccess = () => {
+      handleCancel();
+      reloadPlants();
+      form.resetFields();
+    }
+    addPlant(values, onSuccess);
   };
 
   const showModal = () => {

@@ -10,6 +10,7 @@ import PlantTableColumns from './PlantTableColumns';
 import loadPlants from '../effects/load_plants';
 import plantsSelector from '../store/selectors/plants-selector';
 import loadingSelector from '../store/selectors/loading-selector';
+import { deletePlant } from '../api_requests/plants'; 
 
 function Plants({plants, loading}) {
 	const dispatch = useDispatch();
@@ -22,27 +23,11 @@ function Plants({plants, loading}) {
     	dispatch(loadPlants());
  	};
 
- 	const deletePlant = (id) => {
-	    const url = `api/v1/plants/${id}`;
-
-	    fetch(url, {
-	      method: "delete",
-	    })
-      .then((data) => {
-        if (data.ok) {
-          reloadPlants();
-        } else {
-       		throw new Error("Network error.");
-      	}
-      })
-    	  .catch((err) => message.error("Error: " + err));
-  	};
-
 	const columns = PlantTableColumns({
 	    delete_text: 'Are you sure you want to delete this plant?',
-	    onDelete: deletePlant
+	    onDelete: (id) => deletePlant(id, reloadPlants)
 	});
-	
+
   return (
     <AppLayout>
     <h1>Plants</h1>
