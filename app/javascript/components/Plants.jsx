@@ -19,8 +19,7 @@ function Plants({plants, loading}) {
 
 
   const reloadPlants = () => {
-    	setPlants({ plants: [] });
-    	loadPlants();
+    	dispatch(loadPlants());
  	};
 
  	const deletePlant = (id) => {
@@ -29,14 +28,14 @@ function Plants({plants, loading}) {
 	    fetch(url, {
 	      method: "delete",
 	    })
-	      .then((data) => {
-	        if (data.ok) {
-	          reloadPlants();
-	          return data.json();
-	        }
-	        throw new Error("Network error.");
-	      })
-      	  .catch((err) => message.error("Error: " + err));
+      .then((data) => {
+        if (data.ok) {
+          reloadPlants();
+        } else {
+       		throw new Error("Network error.");
+      	}
+      })
+    	  .catch((err) => message.error("Error: " + err));
   	};
 
 	const columns = PlantTableColumns({
@@ -44,17 +43,16 @@ function Plants({plants, loading}) {
 	    onDelete: deletePlant
 	});
 
-  	return (
-      <AppLayout>
-      <h1>Plants</h1>
-        <Table className="table-striped-rows"
-        	dataSource={plants}
-        	columns={columns}
-        	pagination={{ pageSize: 5 }} />
-        <AddPlantModal reloadPlants={loadPlants} />
-      </AppLayout>
-    );
- 	return (<div>HI</div>)
+  return (
+    <AppLayout>
+    <h1>Plants</h1>
+      <Table className="table-striped-rows"
+        dataSource={plants}
+       	columns={columns}
+        pagination={{ pageSize: 10 }} />
+      <AddPlantModal reloadPlants={reloadPlants} />
+    </AppLayout>
+  );
 
 };
 

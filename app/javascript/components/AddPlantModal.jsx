@@ -1,16 +1,14 @@
 import { Button, Form, Input, Modal, Select } from "antd";
-import React from "react";
+import React, { useState } from "react";
 
 const { Option } = Select;
 
-class AddPlantModal extends React.Component {
-  formRef = React.createRef();
-  state = {
-    visible: false,
-  };
+function AddPlantModal({reloadPlants}){
+  const [ visible, setVisibility ] = useState(false);
+  const [form] = Form.useForm();
 
-  onFinish = (values) => {
-    const url = "api/v1/plants/";
+  const onFinish = (values) => {
+    const url = "api/v1/plants/create";
     fetch(url, {
       method: "post",
       headers: {
@@ -18,67 +16,60 @@ class AddPlantModal extends React.Component {
       },
       body: JSON.stringify(values),
     })
-      .then((data) => {
-        if (data.ok) {
-          this.handleCancel();
-
-          return data.json();
-        }
+    .then((data) => {
+      if (data.ok) {
+        handleCancel();
+        reloadPlants();
+        form.resetFields();
+      } else {
         throw new Error("Network error.");
-      })
-      .then(() => {
-        this.props.reloadPlants();
-      })
-      .catch((err) => console.error("Error: " + err));
+      }
+    })
+    .catch((err) => console.error("Error: " + err));
   };
 
-  showModal = () => {
-    this.setState({
-      visible: true,
-    });
+  const showModal = () => {
+    setVisibility(true);
   };
 
-  handleCancel = () => {
-    this.setState({
-      visible: false,
-    });
+  const handleCancel = () => {
+    setVisibility(false);
+    form.resetFields();
   };
 
-  render() {
-    return (
-      <>
-        <Button type="primary" onClick={this.showModal}>
-          Create New +
-        </Button>
+  return (
+    <>
+      <Button type="primary" onClick={showModal}>
+        Create New +
+      </Button>
 
-        <Modal title="Add New Plant ..." visible={this.state.visible} onCancel={this.handleCancel} footer={null}>
-          <Form ref={this.formRef} layout="vertical" onFinish={this.onFinish}>
-            <Form.Item name="name" label="Name" rules={[{ required: true, message: "Please input your plant name" }]}>
-              <Input placeholder="Input your plant name" />
-            </Form.Item>
+      <Modal title="Add New Plant ..." visible={visible} onCancel={handleCancel} footer={null}>
+        <Form form={form} layout="vertical" onFinish={onFinish}>
+          <Form.Item name="name" label="Name" rules={[{ required: true, message: "Please input your plant name" }]}>
+            <Input placeholder="Input your plant name" />
+          </Form.Item>
 
-            <Form.Item name="exposure" label="Exposure" rules={[{ required: true, message: "Please input the sun exposure" }]}>
-              <Input placeholder="Input your plant exposure" />
-            </Form.Item>
+          <Form.Item name="exposure" label="Exposure" rules={[{ required: true, message: "Please input the sun exposure" }]}>
+            <Input placeholder="Input your plant exposure" />
+          </Form.Item>
 
-            <Form.Item name="moisture" label="Moisture" rules={[{ required: true, message: "Please input the sun exposure" }]}>
-              <Input placeholder="Input your plant's moisture needs" />
-            </Form.Item>
+          <Form.Item name="moisture" label="Moisture" rules={[{ required: true, message: "Please input the sun exposure" }]}>
+            <Input placeholder="Input your plant's moisture needs" />
+          </Form.Item>
 
-            <Form.Item name="description" label="Description" rules={[{ required: true, message: "Please input the quantity!" }]}>
-              <Input  placeholder="Plant description" />
-            </Form.Item>
+          <Form.Item name="description" label="Description" rules={[{ required: true, message: "Please input a description" }]}>
+            <Input  placeholder="Plant description" />
+          </Form.Item>
 
-            <Form.Item>
-              <Button type="primary" htmlType="submit">
-                Submit
-              </Button>
-            </Form.Item>
-          </Form>
-        </Modal>
-      </>
-    );
-  }
+          <Form.Item>
+            <Button type="primary" htmlType="submit">
+              Submit
+            </Button>
+          </Form.Item>
+        </Form>
+      </Modal>
+    </>
+  );
 }
 
 export default AddPlantModal;
