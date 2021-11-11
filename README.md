@@ -1,24 +1,29 @@
-# README
+### Garden Planner
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This is a personal project to keep track of what is planted in different parts of my garden and plan for the coming season. For specifics on the plan for this project see my [planning doc](./docs/plan.md). 
 
-Things you may want to cover:
+# Getting setup
 
-* Ruby version
+Assuming you have rails installed, run `bundle install`. 
+For Javascript dependencies run `yarn install`.
 
-* System dependencies
+# Database setup
 
-* Configuration
+You'll need Postgres 14 installed. 
 
-* Database creation
+Set up the database with `db:create` and `rake db:migrate`.
+For sample data run `rake db:seed`.
 
-* Database initialization
 
-* How to run the test suite
+# Testing
 
-* Services (job queues, cache servers, search engines, etc.)
+For backend, run
 
-* Deployment instructions
+```
+	rspec
+```
 
-* ...
+For frontend, run 
+```
+	yarn test
+```
