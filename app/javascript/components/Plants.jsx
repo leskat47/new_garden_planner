@@ -42,7 +42,7 @@ function Plants({plants, loading}) {
 	    delete_text: 'Are you sure you want to delete this plant?',
 	    onDelete: deletePlant
 	});
-
+	
   return (
     <AppLayout>
     <h1>Plants</h1>

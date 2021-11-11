@@ -39,11 +39,11 @@ function AddPlantModal({reloadPlants}){
 
   return (
     <>
-      <Button type="primary" onClick={showModal}>
+      <Button type="primary" data-testid="add-plant" onClick={showModal}>
         Create New +
       </Button>
 
-      <Modal title="Add New Plant ..." visible={visible} onCancel={handleCancel} footer={null}>
+      <Modal title="Add New Plant ..." visible={visible} data-testid='add-plant-modal' onCancel={handleCancel} footer={null}>
         <Form form={form} layout="vertical" onFinish={onFinish}>
           <Form.Item name="name" label="Name" rules={[{ required: true, message: "Please input your plant name" }]}>
             <Input placeholder="Input your plant name" />
