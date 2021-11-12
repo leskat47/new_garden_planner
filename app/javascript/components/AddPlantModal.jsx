@@ -1,6 +1,6 @@
 import { Button, Form, Input, Modal, Select } from "antd";
 import React, { useState } from "react";
-import { addPlant } from '../api_requests/plants';
+import addPlant from '../api/add_plant';
 const { Option } = Select;
 
 function AddPlantModal({reloadPlants}){
@@ -50,7 +50,7 @@ function AddPlantModal({reloadPlants}){
           </Form.Item>
 
           <Form.Item>
-            <Button type="primary" htmlType="submit">
+            <Button type="primary" data-testid='add-plant-submit' htmlType="submit">
               Submit
             </Button>
           </Form.Item>
