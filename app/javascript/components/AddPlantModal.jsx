@@ -11,7 +11,6 @@ function AddPlantModal({reloadPlants}){
     const onSuccess = () => {
       handleCancel();
       reloadPlants();
-      form.resetFields();
     }
     addPlant(values, onSuccess);
   };
@@ -30,7 +29,6 @@ function AddPlantModal({reloadPlants}){
       <Button type="primary" data-testid="add-plant" onClick={showModal}>
         Create New +
       </Button>
-
       <Modal title="Add New Plant ..." visible={visible} data-testid='add-plant-modal' onCancel={handleCancel} footer={null}>
         <Form form={form} layout="vertical" onFinish={onFinish}>
           <Form.Item name="name" label="Name" rules={[{ required: true, message: "Please input your plant name" }]}>

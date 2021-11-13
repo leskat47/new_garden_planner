@@ -8,9 +8,9 @@ import addPlant from '../api/add_plant';
 
 jest.mock('../api/add_plant');
 
-describe('Plants tests', () => {
+describe('Plant modal tests', () => {
 
-  it('makes an API call to add a plant', () => {
+  it('shows a form in the modal', () => {
     render(<AddPlantModal reloadPlants={() => {}}  />);
 
     const openButton = screen.getByTestId('add-plant');  
@@ -29,9 +29,5 @@ describe('Plants tests', () => {
     expect(moistureInput.value).toBe('C');
     fireEvent.change(descriptionInput, {target: {value: 'D'}});
     expect(descriptionInput.value).toBe('D');
-
-    const submitButton = screen.getByTestId('add-plant-submit');  
-    fireEvent.click(submitButton);
-    expect(addPlant).toBeCalled();
   });
 });
