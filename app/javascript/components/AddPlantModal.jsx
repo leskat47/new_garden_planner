@@ -1,6 +1,6 @@
 import { Button, Form, Input, Modal, Select } from "antd";
 import React, { useState } from "react";
-import addPlant from '../api/add_plant';
+import { addPlant } from '../api/plants';
 const { Option } = Select;
 
 function AddPlantModal({reloadPlants}){

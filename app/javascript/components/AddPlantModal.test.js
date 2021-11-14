@@ -4,9 +4,9 @@ import { MemoryRouter } from "react-router-dom";
 import { Provider } from 'react-redux';
 import configureMockStore from 'redux-mock-store';
 import AddPlantModal from './AddPlantModal';
-import addPlant from '../api/add_plant';
+import addPlant from '../api/plants';
 
-jest.mock('../api/add_plant');
+jest.mock('../api/plants');
 
 describe('Plant modal tests', () => {
 
