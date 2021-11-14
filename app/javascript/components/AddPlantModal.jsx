@@ -1,7 +1,6 @@
 import { Button, Form, Input, Modal, Select } from "antd";
 import React, { useState } from "react";
 import { addPlant } from '../api/plants';
-const { Option } = Select;
 
 function AddPlantModal({reloadPlants}){
   const [ visible, setVisibility ] = useState(false);
@@ -57,5 +56,9 @@ function AddPlantModal({reloadPlants}){
     </>
   );
 }
+
+AddPlantModal.propTypes = {
+  reloadPlants: PropTypes.isRequired
+};
 
 export default AddPlantModal;
