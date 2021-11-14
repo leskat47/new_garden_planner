@@ -9,7 +9,7 @@ describe('areas selector', () => {
   });
   it('returns an empty list if there are no areas loaded', () => {
     const state = { areas: {} };
-    const expected = [];
+    const expected = null;
     expect(areasSelector(state)).toEqual(expected);
   });
 });
