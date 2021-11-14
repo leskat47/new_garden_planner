@@ -20,5 +20,10 @@
         "jest"
     ],
     "rules": {
+    },
+    "settings": {
+        "react": {
+          "version": "detect"
+        }
     }
 }

@@ -9,8 +9,6 @@ import Areas from './Areas';
 
 jest.mock('../effects/load_areas', () => jest.fn());
 
-const dispatch = jest.fn();
-
 describe('Areas tests', () => {
   const storeBuilder = configureMockStore();
 

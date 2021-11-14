@@ -1,5 +1,5 @@
-import { Table, message, Popconfirm } from 'antd';
-import React, { useState, useEffect } from 'react';
+import { Table } from 'antd';
+import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
@@ -10,53 +10,36 @@ import PlantTableColumns from './PlantTableColumns';
 import loadPlants from '../effects/load_plants';
 import plantsSelector from '../store/selectors/plants-selector';
 import loadingSelector from '../store/selectors/loading-selector';
+import { deletePlant } from '../api/plants'; 
 
 function Plants({plants, loading}) {
-	const dispatch = useDispatch();
-	useEffect( () => {
-		!plants.length && !loading && dispatch(loadPlants());
-	}, [plants, dispatch]);
+  const dispatch = useDispatch();
+  useEffect( () => {
+    !plants.length && !loading && dispatch(loadPlants());
+  }, [plants, dispatch]);
 
 
   const reloadPlants = () => {
-    	setPlants({ plants: [] });
-    	loadPlants();
- 	};
+    dispatch(loadPlants());
+  };
 
- 	const deletePlant = (id) => {
-	    const url = `api/v1/plants/${id}`;
+  const columns = PlantTableColumns({
+    delete_text: 'Are you sure you want to delete this plant?',
+    onDelete: (id) => deletePlant(id, reloadPlants)
+  });
 
-	    fetch(url, {
-	      method: "delete",
-	    })
-	      .then((data) => {
-	        if (data.ok) {
-	          reloadPlants();
-	          return data.json();
-	        }
-	        throw new Error("Network error.");
-	      })
-      	  .catch((err) => message.error("Error: " + err));
-  	};
+  return (
+    <AppLayout>
+    <h1>Plants</h1>
+      <Table className="table-striped-rows"
+        dataSource={plants}
+        columns={columns}
+        pagination={{ pageSize: 10 }} />
+      <AddPlantModal reloadPlants={reloadPlants} />
+    </AppLayout>
+  );
 
-	const columns = PlantTableColumns({
-	    delete_text: 'Are you sure you want to delete this plant?',
-	    onDelete: deletePlant
-	});
-
-  	return (
-      <AppLayout>
-      <h1>Plants</h1>
-        <Table className="table-striped-rows"
-        	dataSource={plants}
-        	columns={columns}
-        	pagination={{ pageSize: 5 }} />
-        <AddPlantModal reloadPlants={loadPlants} />
-      </AppLayout>
-    );
- 	return (<div>HI</div>)
-
-};
+}
 
 Plants.propTypes = {
   plants: PropTypes.array.isRequired,
