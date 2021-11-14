@@ -1,5 +1,5 @@
 import React from 'react';
-import { Table, message, Popconfirm } from 'antd';
+import { Table } from 'antd';
 import PlantTableColumns from './PlantTableColumns';
 import PropTypes from 'prop-types';
 
