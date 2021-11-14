@@ -1,12 +1,6 @@
 import React from 'react';
-import { render, screen, getByText, fireEvent, getByTestId   } from '@testing-library/react';
-import { MemoryRouter } from "react-router-dom";
-import { Provider } from 'react-redux';
-import configureMockStore from 'redux-mock-store';
+import { render, screen, fireEvent } from '@testing-library/react';
 import AddPlantModal from './AddPlantModal';
-import addPlant from '../api/plants';
-
-jest.mock('../api/plants');
 
 describe('Plant modal tests', () => {
 

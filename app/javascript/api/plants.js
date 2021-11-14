@@ -8,7 +8,7 @@ export const addPlant = (values, successAction) => {
     body: JSON.stringify(values)});
 };
 
-export const deletePlant = (id, successAction) => {;
+export const deletePlant = (id, successAction) => {
   apiRequest({
     method: 'delete',
     url: routes.DELETE_PLANT(id),

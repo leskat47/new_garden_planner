@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, screen, getByText, fireEvent, getByTestId   } from '@testing-library/react';
+import { render, screen, getByText, fireEvent } from '@testing-library/react';
 import { MemoryRouter } from "react-router-dom";
 import { Provider } from 'react-redux';
 import configureMockStore from 'redux-mock-store';
@@ -39,6 +39,7 @@ describe('Plants tests', () => {
     },
     loadingStatus: {loading: false}
   });
+
   it('renders plant catalog table', () => {
     const { container } = render(
       <Provider store={store}>
@@ -50,6 +51,7 @@ describe('Plants tests', () => {
     const cell = container.querySelectorAll('tbody>tr>td')[0];
     expect(getByText(cell, 'Azalea')).toBeTruthy();
   });
+
   it('shows plant add form', () => {
     render(
       <Provider store={store}>
