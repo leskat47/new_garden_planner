@@ -10,7 +10,7 @@ import loadingSelector from '../store/selectors/loading-selector';
 
 function Areas({ areas, loading, dispatch }) {
   useEffect(() => {
-    !areas.length && !loading && dispatch(load_areas())
+    !areas && !loading && dispatch(load_areas())
   }, [areas, loading, dispatch]);
 
   if ( loading ) {
@@ -38,6 +38,7 @@ Areas.propTypes = {
 }
 
 function mapStateToProps(state) {
+  console.log(state)
   return {
     areas: areasSelector(state),
     loading: loadingSelector(state)

@@ -82,6 +82,9 @@ GEM
       rack-test (>= 0.6.3)
       regexp_parser (>= 1.5, < 3.0)
       xpath (~> 3.2)
+    capybara-screenshot (1.0.25)
+      capybara (>= 1.0, < 4)
+      launchy
     case_transform (0.2)
       activesupport
     childprocess (4.1.0)
@@ -149,6 +152,8 @@ GEM
     jbuilder (2.11.2)
       activesupport (>= 5.0.0)
     jsonapi-renderer (0.2.2)
+    launchy (2.5.0)
+      addressable (~> 2.7)
     listen (3.7.0)
       rb-fsevent (~> 0.10, >= 0.10.3)
       rb-inotify (~> 0.9, >= 0.9.10)
@@ -263,6 +268,11 @@ GEM
       rexml (~> 3.2, >= 3.2.5)
       rubyzip (>= 1.2.2)
     semantic_range (3.0.0)
+    site_prism (3.7.3)
+      addressable (~> 2.6)
+      capybara (~> 3.15)
+      site_prism-all_there (>= 0.3.1, < 1.0)
+    site_prism-all_there (0.3.2)
     spring (3.0.0)
     sprockets (4.0.2)
       concurrent-ruby (~> 1.0)
@@ -311,6 +321,7 @@ DEPENDENCIES
   bootsnap (>= 1.4.4)
   byebug
   capybara (>= 3.26)
+  capybara-screenshot
   cucumber-rails
   database_cleaner
   factory_bot_rails
@@ -325,11 +336,12 @@ DEPENDENCIES
   rubocop
   sass-rails (>= 6)
   selenium-webdriver
+  site_prism
   spring
   turbolinks (~> 5)
   tzinfo-data
   web-console (>= 4.1.0)
-  webdrivers
+  webdrivers (~> 5.0)
   webpacker (~> 5.0)
 
 RUBY VERSION

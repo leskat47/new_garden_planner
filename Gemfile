@@ -21,8 +21,6 @@ gem 'turbolinks', '~> 5'
 gem 'active_model_serializers'
 gem 'jbuilder', '~> 2.7'
 gem 'rubocop', require: false
-gem 'cucumber-rails', require: false
-gem 'database_cleaner'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
 # Use Active Model has_secure_password
@@ -58,7 +56,14 @@ group :test do
   gem 'capybara', '>= 3.26'
   gem 'selenium-webdriver'
   # Easy installation and use of web drivers to run system tests with browsers
-  gem 'webdrivers'
+  # Add Cucumber
+  gem 'cucumber-rails', require: false
+  gem 'database_cleaner'
+  gem "site_prism"
+  gem "database_cleaner"
+  gem "capybara-screenshot"
+  gem "selenium-webdriver"
+  gem "webdrivers", "~> 5.0", require: false
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

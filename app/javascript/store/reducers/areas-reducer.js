@@ -4,7 +4,7 @@ const initialState = {};
 
 function setAreas (state, action) {
   const areas = action.data || state.areasList;
-  return {areasList: areas};
+  return {areasList: areas || []};
 }
 export default (state = initialState, action) => {
   switch (action.type) {

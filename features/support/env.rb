@@ -5,6 +5,12 @@
 # files.
 
 require 'cucumber/rails'
+require "capybara-screenshot/cucumber"
+require "webdrivers/chromedriver"
+require "factory_bot_rails"
+
+# require "simplecov"
+# SimpleCov.start "rails"
 
 # frozen_string_literal: true
 
@@ -37,6 +43,30 @@ begin
 rescue NameError
   raise "You need to add database_cleaner to your Gemfile (in the :test group) if you wish to use it."
 end
+
+
+
+Capybara.register_driver :chrome do |app|
+  Capybara::Selenium::Driver.new app, browser: :chrome,
+    capabilities: Selenium::WebDriver::Chrome::Options.new(
+      args: %w[ disable-gpu window-size=1366,768]
+    )
+end
+# Capybara.run_server = false
+# Capybara.server_host = 'localhost'
+# Capybara.server_port = 3000;
+
+Capybara.default_driver = :chrome
+Capybara::Screenshot.register_driver(:chrome) do |driver, path|
+  driver.browser.save_screenshot(path)
+end
+
+module CucumberGlobalMethods
+  def app
+    @app ||= App.new
+  end
+end
+World(CucumberGlobalMethods)
 
 # You may also want to configure DatabaseCleaner to use different strategies for certain features and scenarios.
 # See the DatabaseCleaner documentation for details. Example:
