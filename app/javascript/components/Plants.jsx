@@ -10,7 +10,7 @@ import PlantTableColumns from './PlantTableColumns';
 import loadPlants from '../effects/load_plants';
 import plantsSelector from '../store/selectors/plants-selector';
 import loadingSelector from '../store/selectors/loading-selector';
-import { deletePlant } from '../api_requests/plants'; 
+import { deletePlant } from '../api/plants'; 
 
 function Plants({plants, loading}) {
   const dispatch = useDispatch();
