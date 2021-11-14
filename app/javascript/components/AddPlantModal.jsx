@@ -1,5 +1,6 @@
-import { Button, Form, Input, Modal, Select } from "antd";
 import React, { useState } from "react";
+import PropTypes from 'prop-types';
+import { Button, Form, Input, Modal } from "antd";
 import { addPlant } from '../api/plants';
 
 function AddPlantModal({reloadPlants}){
@@ -58,7 +59,7 @@ function AddPlantModal({reloadPlants}){
 }
 
 AddPlantModal.propTypes = {
-  reloadPlants: PropTypes.isRequired
+  reloadPlants: PropTypes.func.isRequired
 };
 
 export default AddPlantModal;
