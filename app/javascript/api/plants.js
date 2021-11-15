@@ -1,4 +1,5 @@
 import routes from './routes';
+import { toast } from 'react-toastify';
 
 export const addPlant = (values, successAction) => {
   apiRequest({
@@ -23,10 +24,19 @@ const apiRequest = ({ method, url, successAction, body=null }) => {
   })
   .then((data) => {
     if (data.ok) {
-    successAction()
+      return data.json()
     } else {
       throw new Error("Network error.");
     }
+  })
+  .then((response) => {
+    if (response.error) {
+      toast.error(response.error);
+    }
+    if (response.notice) {
+      toast.success(response.notice);
+    }
+    successAction(response);
   })
   .catch((err) => console.log("Error: " + err));
 };
