@@ -38,5 +38,8 @@ const apiRequest = ({ method, url, successAction, body=null }) => {
     }
     successAction(response);
   })
-  .catch((err) => console.log("Error: " + err));
+  .catch((err) => {
+    console.log("Error: " + err);
+    toast.error('Sorry, an error occurred.')
+  });
 };
