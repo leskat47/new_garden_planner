@@ -38,7 +38,6 @@ Areas.propTypes = {
 }
 
 function mapStateToProps(state) {
-  console.log(state)
   return {
     areas: areasSelector(state),
     loading: loadingSelector(state)
