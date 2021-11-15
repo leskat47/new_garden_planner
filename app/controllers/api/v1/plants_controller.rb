@@ -49,9 +49,12 @@ module Api
       # DELETE /plants/1
       # DELETE /plants/1.json
       def destroy
-        @plant.destroy
-
-        render json: { notice: 'plant was successfully removed.' }
+        begin
+          @plant.destroy
+          return render json: { notice: 'Plant was successfully removed.' }
+        rescue
+          render json: {error: 'This plant is in use and cannot be deleted.'}
+        end
       end
 
       private
