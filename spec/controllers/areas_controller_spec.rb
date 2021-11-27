@@ -10,7 +10,7 @@ RSpec.describe Api::V1::AreasController do
     let!(:planting) { FactoryBot.create(:planting, location: location, plant: plant) }
 
     it 'gets all areas' do
-      get 'index'
+      get '/'
       body = JSON.parse(response.body)[0]
       location = body['locations'][0]
       planting = location['plantings'][0]

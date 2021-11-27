@@ -1,7 +1,7 @@
 import ACTIONS from '../store/actions/actionTypes' 
 
 const loadPlants = () => {
-  const url = "api/v1/plants/index";
+  const url = "api/v1/plants";
     return async dispatch => {
       dispatch({ type: ACTIONS.START_LOAD });
         const response = await fetch(url);
