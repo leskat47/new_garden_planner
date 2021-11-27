@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe Api::V1::PlantsController do
+RSpec.describe "Plants", type: :request do
   describe 'DELETE plant' do
     let!(:area) { FactoryBot.create(:area) }
     let!(:location) { FactoryBot.create(:location, area: area) }
@@ -9,7 +9,7 @@ RSpec.describe Api::V1::PlantsController do
     let!(:planting) { FactoryBot.create(:planting, location: location, plant: plant) }
 
     it 'deletes an unused plant' do
-      delete :destroy, params: { id: unused_plant.id }
+      delete api_v1_plant_path(unused_plant.id)
       body = JSON.parse(response.body)
 
       aggregate_failures do
@@ -20,7 +20,7 @@ RSpec.describe Api::V1::PlantsController do
     end
 
     it 'does not delete a used plant' do
-      delete :destroy, params: { id: plant.id }
+      delete api_v1_plant_path(plant.id)
       body = JSON.parse(response.body)
       
       aggregate_failures do

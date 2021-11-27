@@ -6,8 +6,7 @@ RSpec.describe "Plantings", type: :request do
   let!(:plant) { FactoryBot.create(:plant) }
 
   describe "GET /create" do
-    it "returns http success" do
-
+    it "returns all plantings for a location success" do
       post api_v1_location_plantings_path(location.id), params: {:date_planted => '01-01-2021', :description => 'text', :plant_id => plant.id}
       expect(response).to have_http_status(:success)
     end

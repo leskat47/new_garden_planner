@@ -6,9 +6,9 @@ import { Button, Form, Input, Modal } from "antd";
 function AddItem({addAction, successAction, buttonText, modalForm}){
   const [ visible, setVisibility ] = useState(false);
 
-  const onFinish = (values) => {
+  const handleFinish = (values,form) => {
     const onSuccess = () => {
-      handleCancel();
+      handleCancel(form);
       successAction();
     }
     addAction(values, onSuccess);
@@ -28,7 +28,7 @@ function AddItem({addAction, successAction, buttonText, modalForm}){
       <Button type="primary" data-testid="add-item" onClick={showModal}>
         {buttonText}
       </Button>
-      { modalForm({onFinish, handleCancel, visible}) }
+      { modalForm({handleFinish, handleCancel, visible}) }
     </>
   );
 }
