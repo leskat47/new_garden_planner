@@ -32,7 +32,7 @@ function Areas({ areas, loading, dispatch }) {
 }
 
 Areas.propTypes = {
-  areas: PropTypes.array.isRequired,
+  areas: PropTypes.array,
   loading: PropTypes.bool.isRequired,
   dispatch: PropTypes.func.isRequired,
 }

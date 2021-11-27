@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import PlantTable from './PlantTable';
+import PlantTable from './plants/PlantTable';
 
 function Locations({ locations }) {
   return (
@@ -11,6 +11,7 @@ function Locations({ locations }) {
             <PlantTable plantings={location.plantings} />
           </div>
       ))}
+      
     </div>
     );
 }

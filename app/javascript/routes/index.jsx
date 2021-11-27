@@ -1,7 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Areas from '../components/Areas';
-import Plants from '../components/Plants';
+import Plants from '../components/plants/Plants';
 
 export default (
   <Router>
