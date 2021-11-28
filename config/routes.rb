@@ -2,16 +2,15 @@
 
 Rails.application.routes.draw do
   resources :flower_characteristics
-  resources :plantings
-  resources :locations
-  resources :areas
+
   namespace :api do
     namespace :v1 do
-      get 'plants/index'
-      post 'plants/create'
-      delete 'plants/:id', to: 'plants#destroy'
+      resources :areas, only: [:index]
+      resources :plants , only: [:index, :create, :destroy]
 
-      get 'areas/index'
+      resources :locations do
+        resources :plantings, only: [:create]
+      end
     end
   end
 

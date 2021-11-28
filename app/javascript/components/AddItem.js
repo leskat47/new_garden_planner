@@ -1,14 +1,14 @@
 import React, { useState } from "react";
 import PropTypes from 'prop-types';
-import { Button, Form, Input, Modal } from "antd";
+import { Button } from "antd";
 
 
 function AddItem({addAction, successAction, buttonText, modalForm}){
   const [ visible, setVisibility ] = useState(false);
 
-  const onFinish = (values) => {
+  const handleFinish = (values,form) => {
     const onSuccess = () => {
-      handleCancel();
+      handleCancel(form);
       successAction();
     }
     addAction(values, onSuccess);
@@ -28,7 +28,7 @@ function AddItem({addAction, successAction, buttonText, modalForm}){
       <Button type="primary" data-testid="add-item" onClick={showModal}>
         {buttonText}
       </Button>
-      { modalForm({onFinish, handleCancel, visible}) }
+      { modalForm({handleFinish, handleCancel, visible}) }
     </>
   );
 }
@@ -36,7 +36,8 @@ function AddItem({addAction, successAction, buttonText, modalForm}){
 AddItem.propTypes = {
   addAction: PropTypes.func.isRequired,
   successAction: PropTypes.func.isRequired,
-  buttonText: PropTypes.string.isRequired
+  buttonText: PropTypes.string.isRequired,
+  modalForm: PropTypes.func.isRequired
 };
 
 export default AddItem;

@@ -2,8 +2,13 @@ import React from "react";
 import PropTypes from 'prop-types';
 import { Button, Form, Input, Modal } from "antd";
 
-function PlantModal({onFinish, handleCancel, visible}){
+function PlantModal({handleFinish, handleCancel, visible}){
   const [form] = Form.useForm();
+
+  const onFinish = (values) => {
+    handleFinish(values, form);
+  }
+
   return (
       <Modal title="Add New Plant ..." visible={visible} data-testid='add-plant-modal' onCancel={() => handleCancel(form)} footer={null}>
         <Form form={form} layout="vertical" onFinish={onFinish}>
@@ -34,7 +39,7 @@ function PlantModal({onFinish, handleCancel, visible}){
 }
 
 PlantModal.propTypes = {
-  onFinish: PropTypes.func.isRequired,
+  handleFinish: PropTypes.func.isRequired,
   handleCancel: PropTypes.func.isRequired,
   visible: PropTypes.bool.isRequired
 };

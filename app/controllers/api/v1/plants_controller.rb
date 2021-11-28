@@ -24,7 +24,7 @@ module Api
 
       # GET /plants/new
       def new
-        @plant = Plant.new
+        
       end
 
       # GET /plants/1/edit
@@ -64,7 +64,6 @@ module Api
         @plant = Plant.find(params[:id])
       end
 
-      # Only allow a list of trusted parameters through.
       def plant_params
         params.permit(:name, :exposure, :moisture, :description)
       end
