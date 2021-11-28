@@ -9,10 +9,10 @@ module Api
       def create
         @planting = @location.plantings.new(planting_params)
 
-        if @planting.save
-          render json: @plant
+        if @planting.save   
+          render json: {planting: @planting, location_id: params[:location_id]}
         else
-          render json: @plant.errors
+          render json: @planting.errors
         end
       end
 
