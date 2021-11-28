@@ -1,9 +1,10 @@
 import React from 'react';
 import { Table } from 'antd';
-import PlantTableColumns from './PlantTableColumns';
+import PlantTableColumns from '../PlantTableColumns';
+import NewPlanting from './NewPlanting';
 import PropTypes from 'prop-types';
 
-function PlantTable({plantings}) {
+function PlantTable({plantings, locationId}) {
   const columns = PlantTableColumns({
     delete_text: 'Are you sure you want to delete this plant?',
     // TODO: add delete function
@@ -22,12 +23,22 @@ function PlantTable({plantings}) {
     };
   });
 
+  const reloadPlantings = () => {
+    console.log('reload');
+  };
+
   return (
-    <Table className="table-striped-rows"
-          dataSource={plantDetails}
-          columns={columns}
-          pagination={{ pageSize: 5 }}
-    />
+    <>
+      <Table className="table-striped-rows"
+            dataSource={plantDetails}
+            columns={columns}
+            pagination={{ pageSize: 5 }}
+      />
+      <NewPlanting
+        reloadPlantings={reloadPlantings}
+        locationId={locationId}
+      />
+    </>
   );
 }
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import PlantTable from './plants/PlantTable';
+import PlantTable from './plantings/PlantTable';
 
 function Locations({ locations }) {
   return (
@@ -8,7 +8,10 @@ function Locations({ locations }) {
       { locations.map((location, i) => (
         <div key={i}>
             <h3>{location.name}</h3>
-            <PlantTable plantings={location.plantings} />
+            <PlantTable 
+              plantings={location.plantings}
+              locationId={location.id}
+            />
           </div>
       ))}
       
