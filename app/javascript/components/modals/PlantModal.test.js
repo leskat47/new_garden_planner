@@ -7,7 +7,7 @@ describe('Plant modal tests', () => {
 
   it('shows a form in the modal', () => {
     render(<PlantModal
-      onFinish={() => {}} 
+      handleFinish={() => {}} 
       handleCancel={() => {}}
       visible={true}
       />);
