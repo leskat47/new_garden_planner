@@ -39,7 +39,7 @@ function PlantModal({handleFinish, handleCancel, visible}){
 }
 
 PlantModal.propTypes = {
-  onFinish: PropTypes.func.isRequired,
+  handleFinish: PropTypes.func.isRequired,
   handleCancel: PropTypes.func.isRequired,
   visible: PropTypes.bool.isRequired
 };

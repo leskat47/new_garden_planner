@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import PropTypes from 'prop-types';
-import { Button, Form, Input, Modal } from "antd";
+import { Button } from "antd";
 
 
 function AddItem({addAction, successAction, buttonText, modalForm}){
@@ -36,7 +36,8 @@ function AddItem({addAction, successAction, buttonText, modalForm}){
 AddItem.propTypes = {
   addAction: PropTypes.func.isRequired,
   successAction: PropTypes.func.isRequired,
-  buttonText: PropTypes.string.isRequired
+  buttonText: PropTypes.string.isRequired,
+  modalForm: PropTypes.func.isRequired
 };
 
 export default AddItem;
