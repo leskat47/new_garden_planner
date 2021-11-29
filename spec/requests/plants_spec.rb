@@ -30,4 +30,15 @@ RSpec.describe "Plants", type: :request do
       end
     end
   end
+
+  describe 'POST plant' do
+    it 'adds a plant' do
+      post api_v1_plants_path, params: {name: 'Test', exposure: 'sun', moisture: 'wet', description: 'text'}
+      body = JSON.parse(response.body)
+      aggregate_failures do
+        expect(response).to have_http_status(:ok)
+        expect(body['name']).to eq('Test')
+      end
+    end
+  end  
 end
