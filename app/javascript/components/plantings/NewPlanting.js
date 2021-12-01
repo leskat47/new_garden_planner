@@ -32,7 +32,9 @@ function NewPlanting({locationId, plants, loading}) {
 }
 
 NewPlanting.propTypes = {
-  locationId: PropTypes.number.isRequired
+  locationId: PropTypes.number.isRequired,
+  plants: PropTypes.array,
+  loading: PropTypes.bool
 }
 
 function mapStateToProps(state) {

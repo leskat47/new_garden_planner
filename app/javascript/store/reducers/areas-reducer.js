@@ -16,7 +16,6 @@ function updatePlantings (state, action) {
   const { area, location_id } = action.data;
   const { id, date_planted, description, plant } = action.data;
 
-  const planting = {}
   const stateArea = newState.areasList.find(item => item.id === area.id);
   const location = stateArea && stateArea.locations.find(location => location.id === location_id)
   location && location.plantings.push({ id, date_planted, description, plant });
