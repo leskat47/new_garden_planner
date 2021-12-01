@@ -6,7 +6,6 @@ import NewPlanting from './NewPlanting';
 import PropTypes from 'prop-types';
 
 function PlantTable({plantings, locationId}) {
-  const dispatch = useDispatch();
   const columns = PlantTableColumns({
     delete_text: 'Are you sure you want to delete this plant?',
     // TODO: add delete function
@@ -40,7 +39,8 @@ function PlantTable({plantings, locationId}) {
 }
 
 PlantTable.propTypes = {
-  plantings: PropTypes.array
+  plantings: PropTypes.array,
+  locationId: PropTypes.string
 }
 
 export default PlantTable;
