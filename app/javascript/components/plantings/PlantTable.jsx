@@ -1,10 +1,12 @@
 import React from 'react';
 import { Table } from 'antd';
+import { useDispatch } from 'react-redux';
 import PlantTableColumns from '../PlantTableColumns';
 import NewPlanting from './NewPlanting';
 import PropTypes from 'prop-types';
 
 function PlantTable({plantings, locationId}) {
+  const dispatch = useDispatch();
   const columns = PlantTableColumns({
     delete_text: 'Are you sure you want to delete this plant?',
     // TODO: add delete function
@@ -23,10 +25,6 @@ function PlantTable({plantings, locationId}) {
     };
   });
 
-  const reloadPlantings = () => {
-    console.log('reload');
-  };
-
   return (
     <>
       <Table className="table-striped-rows"
@@ -35,7 +33,6 @@ function PlantTable({plantings, locationId}) {
             pagination={{ pageSize: 5 }}
       />
       <NewPlanting
-        reloadPlantings={reloadPlantings}
         locationId={locationId}
       />
     </>

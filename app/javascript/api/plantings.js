@@ -9,4 +9,4 @@ export const addPlantingRequest = (locationId) => {
       successAction,
       body: JSON.stringify(values)});
   };
-}
+};

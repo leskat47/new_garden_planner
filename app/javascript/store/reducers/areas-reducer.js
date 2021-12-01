@@ -8,15 +8,19 @@ function setAreas (state, action) {
 }
 
 function updatePlantings (state, action) {
-  // This is dreadfully inefficient. Lots of ways to rearchitect
+  // This is dreadfully inefficient and gross. Lots of ways to rearchitect
   // if we want to scale this, but for more than my garden, we 
   // might design the app pages differently and therefore load the
   // data differently.
-  const { area_id, location_id, planting } = action.data;
-  const area = state.areasList.find(area => area.id === area_id)
-  const location = area && area.locations.find(location => location.id === location_id)
-  location && location.plantings.push(planting);
-  return { areasList: state.areasList };
+  const newState = JSON.parse(JSON.stringify(state)); 
+  const { area, location_id } = action.data;
+  const { id, date_planted, description, plant } = action.data;
+
+  const planting = {}
+  const stateArea = newState.areasList.find(item => item.id === area.id);
+  const location = stateArea && stateArea.locations.find(location => location.id === location_id)
+  location && location.plantings.push({ id, date_planted, description, plant });
+  return { areasList: newState.areasList };
 }
 
 export default (state = initialState, action) => {

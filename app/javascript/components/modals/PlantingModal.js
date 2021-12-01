@@ -1,8 +1,9 @@
 import React from "react";
 import PropTypes from 'prop-types';
 import { Button, Form, Input, Modal, Select, DatePicker } from "antd";
+const { Option } = Select;
 
-function PlantingModal({handleFinish, handleCancel, visible}){
+function PlantingModal({handleFinish, handleCancel, visible, formOptions}){
   const [form] = Form.useForm();
 
   const onFinish = (values) => {
@@ -13,26 +14,25 @@ function PlantingModal({handleFinish, handleCancel, visible}){
       <Modal title="Add New Planting..." visible={visible} data-testid='add-plant-modal' onCancel={() => handleCancel(form)} footer={null}>
         <Form form={form} layout="vertical" onFinish={onFinish}>
           <Form.Item
-            name="planting-date"
+            name="date_planted"
             label="Planting Date"
             rules={[{ required: true, message: "Please input the date planted" }]}>
             <DatePicker />
           </Form.Item>
 
           <Form.Item
-            name="plant"
+            name="plant_id"
             label="Plant"
             rules={[{ required: true, message: "Please input the plant name" }]}>
             <Select
               placeholder="Select plant name"
               allowClear
             >
-              <Option value="male">male</Option>
-              <Option value="female">female</Option>
-              <Option value="other">other</Option>
+            {formOptions.plantOption.map( plant => (
+                <Option key={plant.key} value={plant.id}>{plant.name}</Option>
+            ))}
             </Select>
           </Form.Item>
-
 
           <Form.Item
             name="description"
@@ -54,7 +54,8 @@ function PlantingModal({handleFinish, handleCancel, visible}){
 PlantingModal.propTypes = {
   handleFinish: PropTypes.func.isRequired,
   handleCancel: PropTypes.func.isRequired,
-  visible: PropTypes.bool.isRequired
+  visible: PropTypes.bool.isRequired,
+  formOptions: PropTypes.object.isRequired
 };
 
 export default PlantingModal;

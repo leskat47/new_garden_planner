@@ -75,11 +75,12 @@ describe('areas reducer', () => {
   it('should update plantings for an area and location', () => {
     const data = {
         type: ACTIONS.ADD_PLANTING_SUCCESS,
-        data: {
-          planting: {id: 'planting5', plant: { id: 'plant6' }},
-          location_id: 'loc2',
-          area_id: 'area1'
-        }
+          data: {
+            id: 'planting5',
+            plant: { id: 'plant6' },
+            location_id: 'loc2',
+            area: {id: 'area1'}
+          }
     };
     const result = reducer(initialState, data);
     const new_state_plantings = result.areasList[0].locations[0].plantings;
@@ -90,9 +91,10 @@ describe('areas reducer', () => {
       const data = {
           type: ACTIONS.ADD_PLANTING_SUCCESS,
           data: {
-            planting: {id: 'planting5', plant: { id: 'plant6' }},
+            id: 'planting5',
+            plant: { id: 'plant6' },
             location_id: 'loc2',
-            area_id: 'area2'
+            area: {id: 'area99'}
           }
       };
       const result = reducer(initialState, data);
@@ -103,9 +105,10 @@ describe('areas reducer', () => {
       const data = {
           type: ACTIONS.ADD_PLANTING_SUCCESS,
           data: {
-            planting: {id: 'planting5', plant: { id: 'plant6' }},
+            id: 'planting5',
+            plant: { id: 'plant6' },
             location_id: 'loc99',
-            area_id: 'area1'
+            area: {id: 'area2'}
           }
       };
       const result = reducer(initialState, data);
