@@ -8,7 +8,7 @@ import PlantTable from './PlantTable';
 describe('Plant table tests', () => {
   const storeBuilder = configureMockStore();
   it('renders table', () => {
-    const store = storeBuilder({});
+    const store = storeBuilder({plants: {plantList: [{ id: 1 }] } });
     const { container } = render(
       <Provider store={store}>
         <PlantTable plantings={[]} />

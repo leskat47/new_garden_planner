@@ -23,6 +23,7 @@ describe('Areas tests', () => {
                  ],
           }]
         },
+      plants: { plantList: [{id: 1}]},
       loadingStatus: {loading: false}  
     });
     const { container } = render(
