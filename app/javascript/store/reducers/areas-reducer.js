@@ -1,9 +1,11 @@
 import ACTIONS from '../actions/actionTypes';
+import normalizeData from './normalizer';
 
 const initialState = {};
 
 function setAreas (state, action) {
   const areas = action.data || state.areasList;
+
   return {areasList: areas || []};
 }
 
