@@ -60,9 +60,7 @@ group :test do
   gem 'cucumber-rails', require: false
   gem 'database_cleaner'
   gem "site_prism"
-  gem "database_cleaner"
   gem "capybara-screenshot"
-  gem "selenium-webdriver"
   gem "webdrivers", "~> 5.0", require: false
 end
 
