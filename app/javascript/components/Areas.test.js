@@ -14,17 +14,31 @@ describe('Areas tests', () => {
 
   it('renders list of areas', () => {
     const store = storeBuilder({
-      areas: {
-        areasList: [{ name: 'Area1',
-        locations: [
-                  { name: 'Location1', 
-                    plantings: [{plant: {name: 'Geranium' }}]
-                  }
-                 ],
-          }]
+      garden: {
+        areas: {
+          '1': {
+            name: 'Area1',
+            locations: [2]
+          }
         },
-      plants: { plantList: [{id: 1}]},
-      loadingStatus: {loading: false}  
+        locations: {
+          '2': {
+            name: 'Location1', 
+            plantings: ['10', '11']
+          }
+        },
+        plantings: {
+          '10': { plant: { id: '20' }},
+          '11': { plant: { id: '21' }}
+        }
+      },
+      plants: {
+        plantList: [
+          { name: 'Azalea', exposure: 'sun', moisture: 'even', description: 'text' },
+          { name: 'Verbena', exposure: 'sun', moisture: 'even', description: 'text' }
+        ]
+      },
+      loadingStatus: { loading: false }  
     });
     const { container } = render(
       <Provider store={store}>
@@ -34,16 +48,6 @@ describe('Areas tests', () => {
       </Provider>);
     expect(container.querySelector('h2')).toBeTruthy();
     expect(container.querySelectorAll('table').length).toEqual(1);
-  });
-
-  it.skip('makes a call for areas', () => {
-    // TODO: Come back to this. May need to set up thunk to suport testing the async.
-    const store = storeBuilder({areas: {}, loadingStatus: {loading: false} });
-    render(
-      <Provider store={store}>
-        <Areas/>
-      </Provider>);
-    expect(load_areas).toHaveBeenCalled();
   });
 
 });

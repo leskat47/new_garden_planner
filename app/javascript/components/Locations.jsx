@@ -10,7 +10,7 @@ function Locations({ locationList, locationIds }) {
         <div key={i}>
             <h3>{locationList[id].name}</h3>
             <PlantTable 
-              plantings={locationList[id].plantings}
+              plantingIds={locationList[id].plantings}
               locationId={id}
             />
           </div>

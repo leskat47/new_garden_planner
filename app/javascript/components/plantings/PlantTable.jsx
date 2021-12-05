@@ -5,14 +5,14 @@ import PlantTableColumns from '../PlantTableColumns';
 import NewPlanting from './NewPlanting';
 import PropTypes from 'prop-types';
 
-function PlantTable({plantings, locationId, plantingList}) {
+function PlantTable({plantingIds, locationId, plantingList}) {
   const columns = PlantTableColumns({
     delete_text: 'Are you sure you want to delete this plant?',
     // TODO: add delete function
     onDelete: () => { console.log('delete')}
   });
 
-  const plantDetails = plantings && plantings.map(plantingId => {
+  const plantDetails = plantingIds && plantingIds.map(plantingId => {
     // TODO: We can do this parsing in the serializer. Just getting antd styling in now.
     const plant = plantingList[plantingId].plant;
     return {
@@ -39,7 +39,7 @@ function PlantTable({plantings, locationId, plantingList}) {
 }
 
 PlantTable.propTypes = {
-  plantings: PropTypes.array,
+  plantingIds: PropTypes.array,
   locationId: PropTypes.string,
   plantingList: PropTypes.object
 }
