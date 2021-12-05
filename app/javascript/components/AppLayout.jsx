@@ -12,21 +12,19 @@ const AppLayout = ({children}) => {
     <div className="layout">
       <Header />
       <Content>
-        <main>
-          <ToastContainer 
-            position="top-center"
-            autoClose={4000}
-            hideProgressBar={false}
-            newestOnTop={false}
-            transition={Slide}
-            closeOnClick
-            rtl={false}
-            pauseOnFocusLoss
-            draggable
-            pauseOnHover
-          />
-          {children}
-        </main>
+        <ToastContainer 
+          position="top-center"
+          autoClose={4000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          transition={Slide}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+        />
+        {children}
       </Content>
     </div>
   )
