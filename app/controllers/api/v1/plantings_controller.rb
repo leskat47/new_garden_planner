@@ -1,7 +1,7 @@
 module Api
   module V1
     class PlantingsController < ApplicationController
-      before_action :set_location
+      before_action :set_location, :set_planting
 
       def show
       end
@@ -19,10 +19,18 @@ module Api
       end
 
       def destroy
+        @planting.destroy
+        return render json: { notice: 'Planting was successfully removed.' }
       end
 
       def set_location
         @location = Location.find(params[:location_id])
+      end
+
+      def set_planting
+        if params[:id]
+          @planting = Planting.find(params[:id])
+        end
       end
 
       def planting_params
