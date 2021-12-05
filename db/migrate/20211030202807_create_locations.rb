@@ -2,10 +2,10 @@
 
 class CreateLocations < ActiveRecord::Migration[6.1]
   def change
-    create_table :locations do |t|
+    create_table :locations, id: :uuid do |t|
       t.string :name, null: false
       t.text :description
-      t.references :area, null: false, foreign_key: true
+      t.references :area, null: false, foreign_key: true, type: :uuid
 
       t.timestamps
     end

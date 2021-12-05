@@ -2,7 +2,7 @@
 
 class CreateAreas < ActiveRecord::Migration[6.1]
   def change
-    create_table :areas do |t|
+    create_table :areas, id: :uuid   do |t|
       t.string :name
       t.text :description
 
