@@ -7,8 +7,10 @@ $light-green: #d0ffd0;
 $dark-green: #009b29;
 
 body {
-
   header {
+    position: sticky;
+    top: 0;
+    z-index: 1;
     padding: 0 2.5rem;
     line-height: 2.5rem;
     background: $medium-blue;
@@ -29,7 +31,6 @@ body {
 
   main {
     padding: 2rem;
-
     .ant-table-thead > tr > th {
       color: $dark-green;
     }
