@@ -1,7 +1,11 @@
+const apiBase = 'api/v1';
+
 const routes = {
-  ADD_PLANT: () => 'api/v1/plants',
-  ADD_PLANTING: (locationId) => `/api/v1/locations/${locationId}/plantings`,
-  DELETE_PLANT: (id) => `api/v1/plants/${id}`
+  ADD_PLANT: () => `${apiBase}/plants`,
+  ADD_PLANTING: (locationId) => `${apiBase}/locations/${locationId}/plantings`,
+  DELETE_PLANT: (id) => `${apiBase}/plants/${id}`,
+  DELETE_PLANTING: (locationId, id) => 
+    `${apiBase}/locations/${locationId}/plantings/${id}`
 };
 
 export default routes;

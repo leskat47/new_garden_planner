@@ -1,15 +1,24 @@
 import React from 'react';
-import { connect } from 'react-redux';
+import { connect, useDispatch } from 'react-redux';
 import { Table } from 'antd';
+import { toast } from 'react-toastify';
+import PropTypes from 'prop-types';
 import PlantTableColumns from '../PlantTableColumns';
 import NewPlanting from './NewPlanting';
-import PropTypes from 'prop-types';
+import ACTIONS from '../../store/actions/actionTypes';
+import { deletePlanting } from '../../api/plantings'; 
 
 function PlantTable({plantingIds, locationId, plantingList}) {
+  const dispatch = useDispatch();
+  const updatePlantings = ({ id }) => {
+    dispatch({ type: ACTIONS.REMOVE_PLANTING, data: {id, locationId} });
+  };
+
   const columns = PlantTableColumns({
     delete_text: 'Are you sure you want to delete this plant?',
-    // TODO: add delete function
-    onDelete: () => { console.log('delete')}
+    onDelete: (id) => { 
+      deletePlanting({locationId, id, updatePlantings});
+    }
   });
 
   const plantDetails = plantingIds && plantingIds.map(plantingId => {
@@ -18,6 +27,7 @@ function PlantTable({plantingIds, locationId, plantingList}) {
     return {
       name: plant.name,
       key: plantingId,
+      id: plantingId,
       exposure: plant.exposure,
       moisture: plant.moisture,
       description: plant.description

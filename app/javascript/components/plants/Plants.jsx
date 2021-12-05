@@ -3,7 +3,6 @@ import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { toast } from 'react-toastify';
 import AppLayout from '../AppLayout';
 import NewPlant from "./NewPlant";
 import PlantTableColumns from '../PlantTableColumns';
@@ -26,7 +25,7 @@ function Plants({plants, loading}) {
   const columns = PlantTableColumns({
     delete_text: 'Are you sure you want to delete this plant?',
     onDelete: (id) => {
-      deletePlant(id, reloadPlants, toast);
+      deletePlant(id, reloadPlants);
     }
   });
 
