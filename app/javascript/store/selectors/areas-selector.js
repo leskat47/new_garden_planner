@@ -1,1 +1,1 @@
-export default (state) => state.areas && state.areas.areasList || null;
+export default (state) => state.garden && state.garden.areas || null;

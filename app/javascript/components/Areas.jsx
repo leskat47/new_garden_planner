@@ -16,23 +16,25 @@ function Areas({ areas, loading, dispatch }) {
   if ( loading ) {
     return (
       <div className="loading">loading...</div>
-    )
+    );
   }
+
   return (
     <AppLayout>
       <h1>Areas</h1>
-      { areas && areas.map((area, i) => (
+      { areas && Object.values(areas).map((area, i) => (
         <div key={i}>
             <h2>{area.name}</h2>
-            <Locations locations={area.locations} />
+            <Locations locationIds={area.locations} />
           </div>
       ))}
+
     </AppLayout>
     );
 }
 
 Areas.propTypes = {
-  areas: PropTypes.array,
+  garden: PropTypes.object,
   loading: PropTypes.bool.isRequired,
   dispatch: PropTypes.func.isRequired,
 }
