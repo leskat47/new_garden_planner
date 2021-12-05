@@ -1,7 +1,6 @@
 import React from 'react';
 import { connect, useDispatch } from 'react-redux';
 import { Table } from 'antd';
-import { toast } from 'react-toastify';
 import PropTypes from 'prop-types';
 import PlantTableColumns from '../PlantTableColumns';
 import NewPlanting from './NewPlanting';
