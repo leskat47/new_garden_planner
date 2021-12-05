@@ -13,13 +13,15 @@ function setGarden(state, action) {
 }
 
 function updatePlantings(state, action) {
-  const { id, date_planted, description, plant } = action.data;
+  let { id, date_planted, description, plant, location_id } = action.data;
   const newState = {
     ...state,
-    plantings: { ...state.plantings }
+    locations: {...state.locations},
+    plantings: { ...state.plantings}
   };
-  debugger;
-  newState.plantings[id.toString()] = {id, date_planted, location, plant};
+  newState.locations[location_id] = { ...state.locations[location_id]}
+  newState.locations[location_id].plantings = [...state.locations[location_id].plantings, id];
+  newState.plantings[id] = {id, date_planted, plant};
 
   return newState;
 }

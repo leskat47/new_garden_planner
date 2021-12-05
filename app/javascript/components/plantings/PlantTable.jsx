@@ -12,7 +12,7 @@ function PlantTable({plantings, locationId, plantingList}) {
     onDelete: () => { console.log('delete')}
   });
 
-  const plantDetails = plantings.map(plantingId => {
+  const plantDetails = plantings && plantings.map(plantingId => {
     // TODO: We can do this parsing in the serializer. Just getting antd styling in now.
     const plant = plantingList[plantingId].plant;
     return {
@@ -40,7 +40,7 @@ function PlantTable({plantings, locationId, plantingList}) {
 
 PlantTable.propTypes = {
   plantings: PropTypes.array,
-  locationId: PropTypes.number,
+  locationId: PropTypes.string,
   plantingList: PropTypes.object
 }
 
