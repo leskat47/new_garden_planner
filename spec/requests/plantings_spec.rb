@@ -31,5 +31,21 @@ RSpec.describe "Plantings", type: :request do
       end
     end
   end
+  # DELETE /api/v1/locations/:location_id/plantings/:id
+  describe "DELETE planting" do 
+    it "deletes a planting" do
+      planting = FactoryBot.create(:planting, location: location, plant: plant)     
+      planting_id = planting.id
+      delete api_v1_location_planting_path(location.id, planting_id)
+      body = JSON.parse(response.body)
 
+      aggregate_failures do
+        expect(response).to have_http_status(:success)
+        expect(body["notice"]).to eq('Planting was successfully removed.')
+        expect(Plant.where(id: planting_id).exists?).to equal(false)
+      end  
+
+    end
+
+  end
 end

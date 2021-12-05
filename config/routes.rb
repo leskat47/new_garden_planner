@@ -9,7 +9,7 @@ Rails.application.routes.draw do
       resources :plants , only: [:index, :create, :destroy]
 
       resources :locations do
-        resources :plantings, only: [:show, :create]
+        resources :plantings, only: [:show, :create, :destroy]
       end
     end
   end
