@@ -8,7 +8,7 @@ let initialState;
       locations: {
         1: {
           name: 'Back yard',
-          plantings: [12]
+          plantings: [2]
           }  
       },
       plantings: {
@@ -117,6 +117,7 @@ let initialState;
       }
     );
   });
+
   it('should update the plantings when a new planting is added', () => {
     const newPlanting = {
       id: 47,
@@ -130,7 +131,7 @@ let initialState;
       locations: {
         1: {
           name: 'Back yard',
-          plantings: [12, 47]
+          plantings: [2, 47]
           }  
       },
       plantings: {
@@ -148,6 +149,20 @@ let initialState;
 
     const action = {type: ACTIONS.ADD_PLANTING_SUCCESS, data: newPlanting};
     expect(reducer(initialState, action)).toEqual(result);
-  })
+  });
+
+  it('should update plantings when a planting is removed', () => {
+    const result = {
+      locations: {
+        1: {
+          name: 'Back yard',
+          plantings: []
+          }  
+      },
+      plantings: {}
+    };
+    const action = { type: ACTIONS.REMOVE_PLANTING, data: {id: 2, locationId: 1} };
+    expect(reducer(initialState, action)).toEqual(result);
+  });
 });
 
