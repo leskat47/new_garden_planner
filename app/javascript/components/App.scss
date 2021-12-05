@@ -2,16 +2,19 @@
 @import '../styles/tables';
 
 $icon-size: 24px; 
-$dark-blue: #023062;
+$medium-blue: #3c52ff;
 $light-green: #d0ffd0;
+$dark-green: #009b29;
+$white: #fff;
 
 body {
-  padding: 1rem;
-
   header {
+    position: sticky;
+    top: 0;
+    z-index: 1;
     padding: 0 2.5rem;
     line-height: 2.5rem;
-    background: darkblue;
+    background: $medium-blue;
     display: flex;
     align-items: center;
       a.nav {
@@ -22,13 +25,27 @@ body {
         padding: 1rem;
         &.selected {
           background: $light-green;
-          color: $dark-blue;
+          color: $medium-blue;
         }
       }
   }
 
   main {
-    padding: 2rem;
+    padding: 3.5rem;
+    .ant-table-thead > tr > th {
+      color: $dark-green;
+    }
+  }
+
+  a:hover {
+    background-color: $dark-green;
+    color: $white;
+  }
+
+  .ant-pagination-item-active a {
+    &:hover {
+      color: $white;
+    }
   }
 }
 

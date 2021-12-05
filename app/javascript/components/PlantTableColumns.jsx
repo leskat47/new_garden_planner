@@ -7,16 +7,19 @@ function PlantTableColumns({delete_text, onDelete}) {
       title: "Name",
       dataIndex: "name",
       key: "name",
+      sorter: (a, b) => a.name.localeCompare(b.name)
     },
     {
       title: "Exposure",
       dataIndex: "exposure",
       key: "exposure",
+      sorter: (a, b) => a.exposure.localeCompare(b.exposure)
     },
     {
       title: "Moisture",
       dataIndex: "moisture",
       key: "moisture",
+      sorter: (a, b) => a.moisture.localeCompare(b.moisture),
     },
     {
       title: "Description",
