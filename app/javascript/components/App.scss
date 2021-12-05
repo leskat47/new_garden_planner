@@ -5,6 +5,7 @@ $icon-size: 24px;
 $medium-blue: #3c52ff;
 $light-green: #d0ffd0;
 $dark-green: #009b29;
+$white: #fff;
 
 body {
   header {
@@ -33,6 +34,17 @@ body {
     padding: 3.5rem;
     .ant-table-thead > tr > th {
       color: $dark-green;
+    }
+  }
+
+  a:hover {
+    background-color: $dark-green;
+    color: $white;
+  }
+
+  .ant-pagination-item-active a {
+    &:hover {
+      color: $white;
     }
   }
 }
