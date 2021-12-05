@@ -10,3 +10,10 @@ export const addPlantingRequest = (locationId) => {
       body: JSON.stringify(values)});
   };
 };
+
+export const deletePlanting = ({ locationId, id, updatePlantings }) => {
+  apiRequest({
+    method: 'delete',
+    url: routes.DELETE_PLANTING(locationId, id),
+    successAction: updatePlantings });
+};

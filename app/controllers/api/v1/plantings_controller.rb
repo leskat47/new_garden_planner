@@ -19,8 +19,9 @@ module Api
       end
 
       def destroy
+        id = @planting.id
         @planting.destroy
-        return render json: { notice: 'Planting was successfully removed.' }
+        return render json: { id: id, notice: 'Planting was successfully removed.' }
       end
 
       def set_location
