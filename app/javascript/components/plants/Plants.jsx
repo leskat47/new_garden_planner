@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 import { toast } from 'react-toastify';
 import AppLayout from '../AppLayout';
 import NewPlant from "./NewPlant";
-import PlantTableColumns from './PlantTableColumns';
+import PlantTableColumns from '../PlantTableColumns';
 import loadPlants from '../../effects/load_plants';
 import plantsSelector from '../../store/selectors/plants-selector';
 import loadingSelector from '../../store/selectors/loading-selector';
@@ -22,7 +22,6 @@ function Plants({plants, loading}) {
   const reloadPlants = () => {
     dispatch(loadPlants());
   };
-
 
   const columns = PlantTableColumns({
     delete_text: 'Are you sure you want to delete this plant?',

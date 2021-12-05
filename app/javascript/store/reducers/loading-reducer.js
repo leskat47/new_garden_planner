@@ -5,7 +5,8 @@ const initialState = {loading: false};
 export default (state = initialState, action) => {
   const endStates = [
     ACTIONS.GET_AREAS_SUCCESS,
-    ACTIONS.GET_PLANTS_SUCCESS
+    ACTIONS.GET_PLANTS_SUCCESS,
+    ACTIONS.ADD_PLANTING_SUCCESS
   ];
 
   if (action.type === ACTIONS.START_LOAD) {

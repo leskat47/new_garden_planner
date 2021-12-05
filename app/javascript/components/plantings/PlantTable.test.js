@@ -8,10 +8,19 @@ import PlantTable from './PlantTable';
 describe('Plant table tests', () => {
   const storeBuilder = configureMockStore();
   it('renders table', () => {
-    const store = storeBuilder({});
+    const store = storeBuilder(
+      {
+        garden: {
+          plantings: {1: { plant: { name: "Bruce" }}}
+        },
+        plants: {
+          plantList: [{ id: 1, name: 'Bruce'}]
+        }
+      }
+    );
     const { container } = render(
       <Provider store={store}>
-        <PlantTable plantings={[]} />
+        <PlantTable plantings={[1]} />
       </Provider>);
     expect(container.querySelector('table')).toBeTruthy();  
   });

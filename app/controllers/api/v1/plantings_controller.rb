@@ -9,11 +9,7 @@ module Api
       def create
         @planting = @location.plantings.new(planting_params)
         if @planting.save   
-          render json: {
-            planting: @planting,
-            location_id: @location.id,
-            area_id: @location.area_id
-          }
+          render json: @planting.to_json(include: ['plant', 'area'])
         else
           render json: @planting.errors
         end
@@ -30,7 +26,7 @@ module Api
       end
 
       def planting_params
-        params.permit(:date_planted, :description, :plant_id)
+        params.permit(:date_planted, :description, :plant_id, :location_id)
       end
     end
   end

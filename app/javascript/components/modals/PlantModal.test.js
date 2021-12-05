@@ -1,7 +1,6 @@
 import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
 import PlantModal from './PlantModal';
-import { Form } from "antd";
 
 describe('Plant modal tests', () => {
 

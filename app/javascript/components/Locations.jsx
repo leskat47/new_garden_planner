@@ -1,23 +1,36 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import PlantTable from './plants/PlantTable';
+import PlantTable from './plantings/PlantTable';
 
-function Locations({ locations }) {
+function Locations({ locationList, locationIds }) {
   return (
     <div>
-      { locations.map((location, i) => (
+      { locationIds && locationIds.map((id, i) => (
         <div key={i}>
-            <h3>{location.name}</h3>
-            <PlantTable plantings={location.plantings} />
+            <h3>{locationList[id].name}</h3>
+            <PlantTable 
+              plantingIds={locationList[id].plantings}
+              locationId={id}
+            />
           </div>
       ))}
-      
     </div>
     );
 }
 
 Locations.propTypes = {
-  locations: PropTypes.array
+  locationIds: PropTypes.array,
+  locationList: PropTypes.shape({
+    name: PropTypes.string,
+    plantings: PropTypes.array
+  })
 };
 
-export default Locations;
+function mapStateToProps(state) {
+  return {
+    locationList: state.garden.locations,
+  }
+}
+
+export default connect(mapStateToProps)(Locations);
