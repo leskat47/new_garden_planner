@@ -1,5 +1,6 @@
 import ACTIONS from '../actions/actionTypes';
 import normalizeData from './normalizer';
+import produce from 'immer'
 
 const initialState = {};
 
@@ -14,16 +15,13 @@ function setGarden(state, action) {
 
 function updatePlantings(state, action) {
   let { id, date_planted, description, plant, location_id } = action.data;
-  const newState = {
-    ...state,
-    locations: {...state.locations},
-    plantings: { ...state.plantings}
-  };
-  newState.locations[location_id] = { ...state.locations[location_id]}
-  newState.locations[location_id].plantings = [...state.locations[location_id].plantings, id];
-  newState.plantings[id] = {id, date_planted, plant};
 
-  return newState;
+  const nextState = produce(state, (draftState) => {
+    draftState.locations[location_id].plantings.push(id);
+    draftState.plantings[id] = {id, date_planted, description, plant};
+  })
+
+  return nextState;
 }
 
 export default (state = initialState, action) => {

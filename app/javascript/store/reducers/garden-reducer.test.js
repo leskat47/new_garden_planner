@@ -5,18 +5,19 @@ describe('locations reducer', () => {
 let initialState;
   beforeEach(() => {
     initialState = {
-        locations: {
-          1: {
-            name: 'Back yard',
-            plantings: {
-              2: {
-                plantId: 3
-              }
-            }  
-          }
+      locations: {
+        1: {
+          name: 'Back yard',
+          plantings: [12]
+          }  
+      },
+      plantings: {
+        2: {
+          plantId: 3
         }
-      };
-    });
+      }
+    };
+  });
 
   it('should set the value of locations on success', () => {
     const example = [
@@ -116,5 +117,37 @@ let initialState;
       }
     );
   });
+  it('should update the plantings when a new planting is added', () => {
+    const newPlanting = {
+      id: 47,
+      date_planted: '2020-01-01',
+      description: 'text',
+      plant: {id: 74},
+      location_id: 1
+    };
+
+    const result = {
+      locations: {
+        1: {
+          name: 'Back yard',
+          plantings: [12, 47]
+          }  
+      },
+      plantings: {
+        2: {
+          plantId: 3
+        },
+        47: {
+          id: 47,
+          date_planted: '2020-01-01',
+          description: 'text',
+          plant: {id: 74}
+        }
+      }
+    };
+
+    const action = {type: ACTIONS.ADD_PLANTING_SUCCESS, data: newPlanting};
+    expect(reducer(initialState, action)).toEqual(result);
+  })
 });
 
