@@ -39,7 +39,7 @@ function PlantTable({plantingIds, locationId, plantingList}) {
       <Table className="table-striped-rows"
             dataSource={plantDetails}
             columns={columns}
-            pagination={{ pageSize: 5 }}
+            pagination={{ pageSize: 8 }}
       />
       <NewPlanting
         locationId={locationId}
