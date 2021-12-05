@@ -10,6 +10,7 @@
     "@reduxjs/toolkit": "^1.6.2",
     "antd": "^4.16.13",
     "babel-plugin-transform-react-remove-prop-types": "^0.4.24",
+    "immer": "^9.0.7",
     "keymirror": "^0.1.1",
     "node-sass": "^6.0.1",
     "normalizr": "^3.6.1",
