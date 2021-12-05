@@ -3,11 +3,8 @@ import { render } from '@testing-library/react';
 import { Provider } from 'react-redux';
 import { MemoryRouter } from "react-router-dom";
 import configureMockStore from 'redux-mock-store';
-import load_areas from '../effects/load_areas';
 
 import Areas from './Areas';
-
-jest.mock('../effects/load_areas', () => jest.fn());
 
 describe('Areas tests', () => {
   const storeBuilder = configureMockStore();

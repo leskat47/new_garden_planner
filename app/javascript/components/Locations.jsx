@@ -15,13 +15,16 @@ function Locations({ locationList, locationIds }) {
             />
           </div>
       ))}
-      
     </div>
     );
 }
 
 Locations.propTypes = {
-  locationIds: PropTypes.array
+  locationIds: PropTypes.array,
+  locationList: PropTypes.shape({
+    name: PropTypes.string,
+    plantings: PropTypes.array
+  })
 };
 
 function mapStateToProps(state) {

@@ -34,7 +34,7 @@ function Areas({ areas, loading, dispatch }) {
 }
 
 Areas.propTypes = {
-  garden: PropTypes.object,
+  areas: PropTypes.object,
   loading: PropTypes.bool.isRequired,
   dispatch: PropTypes.func.isRequired,
 }
